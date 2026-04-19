@@ -23,7 +23,7 @@ const getAllCards = async () => {
     let result = db.query(`
         SELECT *
         FROM major_arcana
-        AND 
+        
         SELECT *
         FROM minor_arcana
         `);
