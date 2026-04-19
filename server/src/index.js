@@ -18,9 +18,10 @@ app.listen(port, () => {
 // ------------------------------------------------
 // Helper Functions
 
+// 1. Get All Cards
 const getAllCards = async () => {
 
-    let result = db.query(`
+    let result = await db.query(`
         SELECT *
         FROM major_arcana;
 
@@ -30,11 +31,34 @@ const getAllCards = async () => {
     
     return result;
 
-}
+};
+
+// 2. Get Major Arcana
+const getMajorArcana = async () => {
+
+    let result = await db.query(`
+        SELECT *
+        FROM major_arcana;
+        `);
+    
+    return result;
+};
+
+// 3. Get Minor Arcana
+const getMinorArcana = async () => {
+
+    let result = await db.query(`
+        SELECT *
+        FROM minor_arcana;
+        `);
+    
+    return result;
+};
 
 // ------------------------------------------------
 // Endpoints
 
+// 1. Get All Cards
 app.get('/get-all-cards', async (req, res) => {
     try {
 
@@ -44,6 +68,34 @@ app.get('/get-all-cards', async (req, res) => {
 
     } catch (error) {
         console.error(error);
-        res.status(500).json(`Error getting cards: ${ error.message }`);
+        res.status(500).json(`Error getting cards: ${error.message}`);
     }
-})
+});
+
+// 2. Get Major Arcana
+app.get('/get-major-arcana', async (req, res) => {
+    try {
+
+        const result = await getMajorArcana();
+    
+        res.json(result);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(`Error getting cards: ${error.message}`);
+    }
+});
+
+// 3. Get Minor Arcana
+app.get('/get-minor- arcana', async (req, res) => {
+    try {
+
+        const result = await getMinorArcana();
+    
+        res.json(result);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(`Error getting cards: ${error.message}`);
+    }
+});
