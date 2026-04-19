@@ -87,7 +87,7 @@ app.get('/get-major-arcana', async (req, res) => {
 });
 
 // 3. Get Minor Arcana
-app.get('/get-minor- arcana', async (req, res) => {
+app.get('/get-minor-arcana', async (req, res) => {
     try {
 
         const result = await getMinorArcana();
