@@ -55,6 +55,67 @@ const getMinorArcana = async () => {
     return result;
 };
 
+// 4. Get All Cards of Suit
+const getCardsBySuit = async (suit) => {
+
+    let result = await db.query(
+        `SELECT *
+        FROM minor_arcana
+        WHERE suit = 1$;`, [suit]
+    );
+    
+    return result;
+};
+
+// 5. Get Minor Arcana by Type
+const getCardsByType = async (suit) => {
+
+    let result = await db.query(
+        `SELECT *
+        FROM minor_arcana
+        WHERE suit = 1$;`, [suit]
+    );
+    
+    return result;
+};
+
+// 6. Get Cards by Suit and Type
+const getCardsBySuitAndType = async (suit, type) => {
+
+    let result = await db.query(
+        `SELECT *
+        FROM minor_arcana
+        WHERE suit = $1
+        AND card_name LIKE '%$2%'`, [suit, type]
+    )
+
+    return result;
+}
+
+// 7. Get Major Card by Name
+const getMajorCardByName = async (name) => {
+
+    let result = await db.query(
+        `SELECT *
+        FROM major_arcana
+        WHERE card_name = $1`, [name]
+    )
+
+    return result;
+}
+
+// 8. Get Minor Card by Name
+const getMinorCardByName = async (name) => {
+
+    let result = await db.query(
+        `SELECT *
+        FROM minor_arcana
+        WHERE card_name = $1`, [name]
+    )
+
+    return result;
+}
+
 // ------------------------------------------------
 // Endpoints
 
@@ -99,3 +160,52 @@ app.get('/get-minor-arcana', async (req, res) => {
         res.status(500).json(`Error getting cards: ${error.message}`);
     }
 });
+
+// 4. Get All Cards of Suit
+app.get('/get-cards-by-suit/:suit', async (req, res) => {
+    try {
+
+        let suit = req.query.suit;
+
+        const result = await getCardsBySuit(suit);
+
+        res.json(result);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(`Error getting suit: ${error.message}`)
+    }
+})
+
+// 5. Get Cards by Type
+app.get('/get-cards-by-type', async (req, res) => {
+    try {
+
+        let type = req.query.type;
+
+        const result = await getCardsByType(type);
+
+        res.json(result)
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(`Error getting type: ${error.message}`)
+    }
+})
+
+// 6. Get Cards by Suit and Type
+app.get('/get-cards-by-suit-and-type', async (req, res) => {
+    try {
+
+        let suit = req.query.suit;
+        let type = req.query.type;
+
+        const result = await getCardsBySuitAndType(suit, type);
+
+        res.json(result);
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json(`Error getting type and suit: ${error.message}`)
+    }
+})
