@@ -101,7 +101,7 @@ const getMajorCardByName = async (name) => {
         WHERE card_name = $1`, [name]
     )
 
-    return result.rows[0];
+    return result;
 }
 
 // 8. Get Minor Card by Name
@@ -113,7 +113,7 @@ const getMinorCardByName = async (name) => {
         WHERE card_name = $1`, [name]
     )
 
-    return result.rows[0];
+    return result;
 }
 
 // ------------------------------------------------
