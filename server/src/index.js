@@ -79,20 +79,7 @@ const getCardsByType = async (suit) => {
     return result;
 };
 
-// 6. Get Cards by Suit and Type
-const getCardsBySuitAndType = async (suit, type) => {
-
-    let result = await db.query(
-        `SELECT *
-        FROM minor_arcana
-        WHERE suit = $1
-        AND card_name LIKE '%$2%'`, [suit, type]
-    )
-
-    return result;
-}
-
-// 7. Get Major Card by Name
+// 6. Get Major Card by Name
 const getMajorCardByName = async (name) => {
 
     let result = await db.query(
@@ -104,7 +91,7 @@ const getMajorCardByName = async (name) => {
     return result.rows;
 }
 
-// 8. Get Minor Card by Name
+// 7. Get Minor Card by Name
 const getMinorCardByName = async (name) => {
 
     let result = await db.query(
@@ -193,24 +180,7 @@ app.get('/get-cards-by-type/:type', async (req, res) => {
     }
 })
 
-// 6. Get Cards by Suit and Type
-app.get('/get-cards-by-suit-and-type/:suit/:type', async (req, res) => {
-    try {
-
-        let suit = req.query.suit;
-        let type = req.query.type;
-
-        const result = await getCardsBySuitAndType(suit, type);
-
-        res.json(result);
-
-    } catch (error) {
-        console.error(error);
-        res.status(500).json(`Error getting type and suit: ${error.message}`)
-    }
-})
-
-// .7 Get Major Card by Name
+// .6 Get Major Card by Name
 app.get('/get-major-card-by-name/:name', async (req, res) => {
     try {
 
@@ -227,7 +197,7 @@ app.get('/get-major-card-by-name/:name', async (req, res) => {
 
 })
 
-// .8 Get Minor Card by Name
+// .7 Get Minor Card by Name
 app.get('/get-minor-card-by-name/:name', async (req, res) => {
     try {
 
