@@ -29,7 +29,7 @@ const getAllCards = async () => {
         FROM minor_arcana;
         `);
     
-    return result;
+    return result.rows;
 
 };
 
@@ -38,10 +38,10 @@ const getMajorArcana = async () => {
 
     let result = await db.query(`
         SELECT *
-        FROM major_arcana;
+        FROM major_arcana
         `);
     
-    return result;
+    return result.rows;
 };
 
 // 3. Get Minor Arcana
@@ -49,10 +49,10 @@ const getMinorArcana = async () => {
 
     let result = await db.query(`
         SELECT *
-        FROM minor_arcana;
+        FROM minor_arcana
         `);
     
-    return result;
+    return result.rows;
 };
 
 // 4. Get All Cards of Suit
@@ -61,10 +61,10 @@ const getCardsBySuit = async (suit) => {
     let result = await db.query(
         `SELECT *
         FROM minor_arcana
-        WHERE card_suit = 1$;`, [suit]
+        WHERE card_suit = $1`, [suit]
     );
     
-    return result;
+    return result.rows;
 };
 
 // 5. Get Minor Arcana by Type
@@ -73,10 +73,10 @@ const getCardsByType = async (suit) => {
     let result = await db.query(
         `SELECT *
         FROM minor_arcana
-        WHERE card_name = 1$;`, [suit]
+        WHERE card_name = $1`, [suit]
     );
     
-    return result;
+    return result.rows;
 };
 
 // 6. Get Major Card by Name
