@@ -178,7 +178,7 @@ app.get('/get-cards-by-suit/:suit', async (req, res) => {
 })
 
 // 5. Get Cards by Type
-app.get('/get-cards-by-type', async (req, res) => {
+app.get('/get-cards-by-type/:type', async (req, res) => {
     try {
 
         let type = req.query.type;
@@ -194,7 +194,7 @@ app.get('/get-cards-by-type', async (req, res) => {
 })
 
 // 6. Get Cards by Suit and Type
-app.get('/get-cards-by-suit-and-type', async (req, res) => {
+app.get('/get-cards-by-suit-and-type/:suit/:type', async (req, res) => {
     try {
 
         let suit = req.query.suit;
