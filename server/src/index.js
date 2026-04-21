@@ -61,7 +61,7 @@ const getCardsBySuit = async (suit) => {
     let result = await db.query(
         `SELECT *
         FROM minor_arcana
-        WHERE suit = 1$;`, [suit]
+        WHERE card_suit = 1$;`, [suit]
     );
     
     return result;
@@ -73,7 +73,7 @@ const getCardsByType = async (suit) => {
     let result = await db.query(
         `SELECT *
         FROM minor_arcana
-        WHERE suit = 1$;`, [suit]
+        WHERE card_name = 1$;`, [suit]
     );
     
     return result;
