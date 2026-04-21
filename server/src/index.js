@@ -101,7 +101,7 @@ const getMajorCardByName = async (name) => {
         WHERE card_name = $1`, [name]
     )
 
-    return result;
+    return result.rows[0];
 }
 
 // 8. Get Minor Card by Name
@@ -113,7 +113,7 @@ const getMinorCardByName = async (name) => {
         WHERE card_name = $1`, [name]
     )
 
-    return result;
+    return result.rows[0];
 }
 
 // ------------------------------------------------
@@ -208,4 +208,38 @@ app.get('/get-cards-by-suit-and-type', async (req, res) => {
         console.error(error);
         res.status(500).json(`Error getting type and suit: ${error.message}`)
     }
+})
+
+// .7 Get Major Card by Name
+app.get('/get-major-card-by-name/:name', async (req, res) => {
+    try {
+
+        let name = req.query.name;
+
+        const result = await getMajorCardByName(name);
+        
+        res.json(result);
+
+    } catch (error) {
+        log.error(error);
+        res.status(500).json(`Error getting major card:, ${ error.message }`);
+    }
+
+})
+
+// .8 Get Minor Card by Name
+app.get('/get-minor-card-by-name/:name', async (req, res) => {
+    try {
+
+        let name = req.query.name;
+
+        const result = await getMinorCardByName(name);
+
+        res.json(result);
+
+    } catch (error) {
+        log.error(error);
+        res.status(500).json(`Error getting minor card:, ${ error.message }`);
+    }
+
 })
