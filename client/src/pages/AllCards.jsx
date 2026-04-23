@@ -1,21 +1,28 @@
-export default function AllCards() {
+import { useState, useEffect } from 'react';
+import MajorCard from '../components/MajorCard';
 
-const cardFiles = [
-  'O.jpg','I.jpg','II.jpg','III.jpg','IV.jpg','V.jpg','VI.jpg',
-  'VII.jpg','VIII.jpg','IX.jpg','X.jpg','XI.jpg','XII.jpg',
-  'XIII.jpg','XIV.jpg','XV.jpg','XVI.jpg','XVII.jpg','XVIII.jpg',
-  'XIX.jpg','XX.jpg','XXI.jpg'
-];
+export default function AllCards() {
+    const [majorCards, setMajorCards] = useState([]);
+
+    const theCards = async () => {
+        const res = await fetch('/api/get-major-arcana/');
+        const data = await res.json();
+        setMajorCards(data);
+    }
+
+    useEffect(() => {
+        // eslint-disable-next-line react-hooks/set-state-in-effect
+        theCards()
+    }, []);
+
     return (
         <main>
+            <div className="h1-wrapper">
             <h1>The Cards</h1>
-                <div className="cards-grid">
-                    {cardFiles.map((file) => (
-                    <img
-                    key={file}
-                    src={`/tarot_cards/${file}`}
-                    alt={file.replace('.jpg', '')}
-                    />
+            </div>
+                <div className="cards">
+                    {majorCards.map((card) => (
+                        <MajorCard key={card.id} card={card} />
                     ))}
                 </div>
         </main>

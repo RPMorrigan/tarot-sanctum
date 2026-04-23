@@ -2,28 +2,54 @@
 
 nav {
   display: flex;
-  flex-direction: row;
+  flex-flow: row;
   font-family: 'Bonheur Royale', cursive;
   background: black;
   margin: 0;
-  padding: 1rem;
+    padding: 0.25rem 0rem 0.05rem 0.25rem;
   height: fit-content;
+  align-items: center;
+  border-bottom: solid thick goldenrod;
+
+  & h2 {
+    margin: 0;
+    padding-bottom: 0.35rem;
+  }
+}
+
+.home-icon{
+  background: goldenrod;
+  height: 4rem;
+  width: fit-content;
+  margin: 0.25rem 0.25rem 0.1rem 0.25rem;
+  padding: 0.1rem 0.15rem 0.1rem 0.1rem;
+  border: solid thin goldenrod;
 }
 
 nav ul {
   display: flex;
-  flex-direction: row;
+  flex-flow: row;
   width: 100%;
-  justify-content: left;
+  gap: 1rem;
+  padding: 0;
+  margin: 0;
+  align-items: end;
   gap: 1rem;
 }
 
 nav ul li {
   list-style-type: none;
+  margin: 0;
 }
 
 .nav-link {
   color: goldenrod;
   text-decoration: none;
   list-style-type: none;
+}
+
+.dBullet {
+  color: goldenrod;
+  font-size: 0.5rem;
+  padding-bottom: 0.75rem;
 }

@@ -10,10 +10,20 @@ export default function App() {
       <nav>
         <ul>
           <li>
-            <Link to='/' className="nav-link">Home</Link>
+            <Link to='/' className="nav-link">
+              <img className="home-icon" src="/fool-icon.svg" alt="Home" />
+            </Link>
           </li>
           <li>
-            <Link to='/all-cards' className="nav-link">The Cards</Link>
+            <Link to='/all-cards' className="nav-link">
+              <h2>The Cards</h2>
+            </Link>
+          </li>
+          <li className='dBullet'>◊</li>
+          <li>
+            <Link to='/layouts' className='nav-link'>
+              <h2>Layouts</h2>
+            </Link>
           </li>
         </ul>
       </nav>
