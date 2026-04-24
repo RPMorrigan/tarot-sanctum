@@ -1,7 +1,11 @@
 export default function MajorCard({ card }) {
 
-    const { card_num, card_name, card_description, upright, reverse } = card;
-    const imageSrc = `/tarot_cards/${card_num}.jpg`;
+    const { id, card_num, card_name, card_description, upright, reverse } = card;
+    const cardImages = import.meta.glob('../assets/tarot_cards/*.jpg', {
+        eager: true,
+        import: 'default',
+    });
+    const imageSrc = cardImages[`../assets/tarot_cards/${id}.jpg`];
 
     return (
         <div className="card-sleeve">

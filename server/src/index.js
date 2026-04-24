@@ -23,10 +23,12 @@ const getAllCards = async () => {
 
     let result = await db.query(`
         SELECT *
-        FROM major_arcana;
+        FROM major_arcana
+        ORDER BY id ASC;
 
         SELECT *
-        FROM minor_arcana;
+        FROM minor_arcana
+        ORDER BY id ASC;
         `);
     
     return result.rows;
@@ -39,6 +41,7 @@ const getMajorArcana = async () => {
     let result = await db.query(`
         SELECT *
         FROM major_arcana
+        ORDER BY id ASC;
         `);
     
     return result.rows;
@@ -50,6 +53,7 @@ const getMinorArcana = async () => {
     let result = await db.query(`
         SELECT *
         FROM minor_arcana
+        ORDER BY id ASC;
         `);
     
     return result.rows;
